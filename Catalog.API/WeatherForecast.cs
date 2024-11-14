@@ -1,4 +1,4 @@
-namespace MTOGO.API
+namespace Catalog.API
 {
     public class WeatherForecast
     {

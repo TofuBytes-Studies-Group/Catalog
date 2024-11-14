@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MTOGO.Domain\MTOGO.Domain.csproj" />
-    <ProjectReference Include="..\MTOGO.Infrastructure\MTOGO.Infrastructure.csproj" />
-    <ProjectReference Include="..\MTOGO.UnitTests\MTOGO.UnitTests.csproj" />
+    <ProjectReference Include="..\Catalog.Domain\Catalog.Domain.csproj" />
+    <ProjectReference Include="..\Catalog.Infrastructure\Catalog.Infrastructure.csproj" />
+    <ProjectReference Include="..\Catalog.UnitTests\Catalog.UnitTests.csproj" />
   </ItemGroup>
 
 </Project>
