@@ -1,7 +1,9 @@
+using Catalog.API.DTO;
 using Catalog.API.Kafka;
 using Catalog.API.Services;
 using Catalog.Infrastructure;
 using Catalog.Infrastructure.Kafka;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,9 +21,8 @@ builder.Services.AddDbContext<CatalogContext>(options =>
 builder.Services.AddSingleton<KafkaProducer>();
 // Add the kafka consumer service as a hosted service (background service that runs for the lifetime of the application):
 builder.Services.AddHostedService<KafkaConsumer>();
-builder.Services.AddScoped<Dbtest>();
-builder.Services.AddScoped<TestService>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+builder.Services.AddScoped<IValidator<RestaurantRequest>, RestaurantRequestValidator>();
 
 
 var app = builder.Build();
