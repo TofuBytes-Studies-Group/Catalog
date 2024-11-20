@@ -1,8 +1,5 @@
-﻿
-using Catalog.Domain;
-using Catalog.Infrastructure;
+﻿using Catalog.Infrastructure;
 using Catalog.Infrastructure.Kafka;
-using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.API.Services
 {
