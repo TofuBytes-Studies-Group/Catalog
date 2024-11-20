@@ -14,15 +14,15 @@ public class RestaurantService : IRestaurantService
         _dbContext = context ?? throw new ArgumentNullException(nameof(context));
     }
 
-    public async Task<Restaurant> CreateRestaurant(Restaurant restaurant)
+    public async Task<RestaurantResponse> CreateRestaurant(RestaurantRequest restaurantRequest)
     {
+        var restaurant = new Restaurant
+        {
+            Name = restaurantRequest.Name
+        };
         var response = await _dbContext.Restaurants.AddAsync(restaurant);
         await _dbContext.SaveChangesAsync();
-        return new Restaurant
-        {
-            Id = response.Entity.Id,
-            Name = response.Entity.Name
-        };
+        return new RestaurantResponse(response.Entity.Id, response.Entity.Name);
     }
 
     public async Task<List<RestaurantResponse>> SearchRestaurants(int offset, int limit, string? search)
@@ -43,10 +43,6 @@ public class RestaurantService : IRestaurantService
                 .ToListAsync();
         }
 
-        return restaurants.Select(r => new RestaurantResponse
-        {
-            Id = r.Id,
-            Name = r.Name
-        }).ToList();
+        return restaurants.Select(r => new RestaurantResponse(r.Id, r.Name)).ToList();
     }
 }

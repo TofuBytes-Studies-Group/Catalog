@@ -1,5 +1,6 @@
+using Catalog.API.DTO;
 using Catalog.API.Services;
-using Catalog.Domain.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
@@ -9,10 +10,12 @@ namespace Catalog.API.Controllers;
 public class RestaurantController: ControllerBase, IRestaurantController
 {
     private readonly IRestaurantService _service;
+    private readonly IValidator<RestaurantRequest> _validator;
 
-    public RestaurantController(IRestaurantService service)
+    public RestaurantController(IRestaurantService service, IValidator<RestaurantRequest> validator)
     {
         _service = service;
+        _validator = validator;
     }
     
     [HttpGet]
@@ -28,8 +31,15 @@ public class RestaurantController: ControllerBase, IRestaurantController
     }
     
     [HttpPost]
-    public Task<IActionResult> CreateRestaurant(Restaurant restaurant)
+    public async Task<IActionResult> CreateRestaurant(RestaurantRequest restaurantRequest)
     {
-        throw new NotImplementedException();
+        var validation = await _validator.ValidateAsync(restaurantRequest);
+        if (!validation.IsValid)
+        {
+            return BadRequest(validation.Errors);
+        }
+        var response = await _service.CreateRestaurant(restaurantRequest);
+        return Ok(response);
+        
     }
 }

@@ -1,4 +1,4 @@
-using Catalog.Domain.Entities;
+using Catalog.API.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
@@ -6,6 +6,6 @@ namespace Catalog.API.Controllers;
 public interface IRestaurantController 
 {
     Task<IActionResult> GetRestaurants(int offset, int limit, string? search);
-    Task<IActionResult> CreateRestaurant(Restaurant restaurant);
+    Task<IActionResult> CreateRestaurant(RestaurantRequest restaurantRequest);
     
 }

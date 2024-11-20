@@ -1,3 +1,4 @@
+using Catalog.API.DTO;
 using Catalog.API.Services;
 using Catalog.Domain.Entities;
 using Catalog.Infrastructure;
@@ -29,7 +30,7 @@ namespace Catalog.UnitTests
         public async void CreateRestaurantInDbShouldReturnRestaurant()
         {
             // Arrange
-            var restaurant = new Restaurant("TestRestaurant");
+            var restaurant = new RestaurantRequest("TestRestaurant");
             // Act
             var result = await _service.CreateRestaurant(restaurant);
             // Assert
@@ -48,7 +49,7 @@ namespace Catalog.UnitTests
                 _dbContext.Restaurants.Add(restaurant);
             }
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             // Act
             var result = await _service.SearchRestaurants(0, limit, null);
             // Assert
@@ -67,7 +68,7 @@ namespace Catalog.UnitTests
                 _dbContext.Restaurants.Add(restaurant);
             }
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             // Act
             var result = await _service.SearchRestaurants(0, limit, null);
             // Assert
@@ -87,7 +88,7 @@ namespace Catalog.UnitTests
                 _dbContext.Restaurants.Add(restaurant);
             }
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             // Act
             var result = await _service.SearchRestaurants(offset, limit, null);
             // Assert
@@ -106,7 +107,7 @@ namespace Catalog.UnitTests
                 var restaurant2 = new Restaurant("TestRestaurant2");
                 _dbContext.Restaurants.Add(restaurant2);
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             // Act
             var result = await _service.SearchRestaurants(0, 10, "TestRestaurant2");
             // Assert
@@ -124,7 +125,7 @@ namespace Catalog.UnitTests
             var restaurant3 = new Restaurant("mcDonald's");
             _dbContext.Restaurants.Add(restaurant3);
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             // Act
             var result = await _service.SearchRestaurants(0, 10, "Restaurant");
             // Assert
@@ -142,7 +143,7 @@ namespace Catalog.UnitTests
             var restaurant3 = new Restaurant("mcDonald's");
             _dbContext.Restaurants.Add(restaurant3);
 
-            _dbContext.SaveChanges();
+            await _dbContext.SaveChangesAsync();
             // Act
             var result = await _service.SearchRestaurants(0, 10, "restaurant");
             // Assert
