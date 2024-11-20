@@ -26,18 +26,18 @@ namespace Catalog.UnitTests
         }
 
         [Fact]
-        public void CreateRestaurantInDbShouldReturnRestaurant()
+        public async void CreateRestaurantInDbShouldReturnRestaurant()
         {
             // Arrange
             var restaurant = new Restaurant("TestRestaurant");
             // Act
-            var result = _service.CreateRestaurant(restaurant);
+            var result = await _service.CreateRestaurant(restaurant);
             // Assert
-            Assert.Equal(restaurant.Name, result.Result.Name);
+            Assert.Equal(restaurant.Name, result.Name);
         }
 
         [Fact]
-        public void GetRestaurantsWithLimitShouldReturnLimitsAmountRestaurant()
+        public async void GetRestaurantsWithLimitShouldReturnLimitsAmountRestaurant()
         {
             // Arrange
             int limit = 20;
@@ -50,13 +50,13 @@ namespace Catalog.UnitTests
 
             _dbContext.SaveChanges();
             // Act
-            var result = _service.SearchRestaurants(0, limit, null);
+            var result = await _service.SearchRestaurants(0, limit, null);
             // Assert
-            Assert.Equal(limit, result.Result.Count);
+            Assert.Equal(limit, result.Count);
         }
         
         [Fact]
-        public void GetRestaurantsWithLimitWhereNumberOfRestaurantsIsLessThanLimitShouldReturnAllRemainingRestaurants()
+        public async void GetRestaurantsWithLimitWhereNumberOfRestaurantsIsLessThanLimitShouldReturnAllRemainingRestaurants()
         {
             // Arrange
             int limit = 20;
@@ -69,13 +69,13 @@ namespace Catalog.UnitTests
 
             _dbContext.SaveChanges();
             // Act
-            var result = _service.SearchRestaurants(0, limit, null);
+            var result = await _service.SearchRestaurants(0, limit, null);
             // Assert
-            Assert.True(limit > result.Result.Count);
+            Assert.True(limit > result.Count);
         }
 
         [Fact]
-        public void GetRestaurantsWithOffsetShouldReturnRestaurantsStartingFromOffset()
+        public async void GetRestaurantsWithOffsetShouldReturnRestaurantsStartingFromOffset()
         {
             // Arrange
             int offset = 5;
@@ -89,16 +89,16 @@ namespace Catalog.UnitTests
 
             _dbContext.SaveChanges();
             // Act
-            var result = _service.SearchRestaurants(offset, limit, null);
+            var result = await _service.SearchRestaurants(offset, limit, null);
             // Assert
 
 
-            Assert.Equal(limit, result.Result.Count);
+            Assert.Equal(limit, result.Count);
 
         }
         
         [Fact]
-        public void GetRestaurantWithSearchShouldReturnRestaurantWithContainingSearchString()
+        public async void GetRestaurantWithSearchShouldReturnRestaurantWithContainingSearchString()
         {
             // Arrange
                 var restaurant = new Restaurant("TestRestaurant");
@@ -108,14 +108,14 @@ namespace Catalog.UnitTests
 
             _dbContext.SaveChanges();
             // Act
-            var result = _service.SearchRestaurants(0, 10, "TestRestaurant2");
+            var result = await _service.SearchRestaurants(0, 10, "TestRestaurant2");
             // Assert
-            Assert.Single(result.Result);
-            Assert.Equal("TestRestaurant2", result.Result[0].Name);
+            Assert.Single(result);
+            Assert.Equal("TestRestaurant2", result[0].Name);
         }
 
         [Fact]
-        public void GetRestaurantsWithSearchShouldReturnRestaurantsContainingSearchString()
+        public async void GetRestaurantsWithSearchShouldReturnRestaurantsContainingSearchString()
         {
             var restaurant = new Restaurant("TestRestaurant");
             _dbContext.Restaurants.Add(restaurant);
@@ -126,14 +126,14 @@ namespace Catalog.UnitTests
 
             _dbContext.SaveChanges();
             // Act
-            var result = _service.SearchRestaurants(0, 10, "Restaurant");
+            var result = await _service.SearchRestaurants(0, 10, "Restaurant");
             // Assert
-            Assert.Equal(2, result.Result.Count);
-            Assert.Equal("TestRestaurant", result.Result[0].Name);
+            Assert.Equal(2, result.Count);
+            Assert.Equal("TestRestaurant", result[0].Name);
         }
         
         [Fact]
-        public void GetRestaurantsWithSearchShouldReturnRestaurantsContainingSearchStringCaseInsensitive()
+        public async void GetRestaurantsWithSearchShouldReturnRestaurantsContainingSearchStringCaseInsensitive()
         {
             var restaurant = new Restaurant("TestRestaurant");
             _dbContext.Restaurants.Add(restaurant);
@@ -144,9 +144,9 @@ namespace Catalog.UnitTests
 
             _dbContext.SaveChanges();
             // Act
-            var result = _service.SearchRestaurants(0, 10, "Restaurant");
+            var result = await _service.SearchRestaurants(0, 10, "restaurant");
             // Assert
-            Assert.Equal(2, result.Result.Count);
+            Assert.Equal(2, result.Count);
         }
         
     }

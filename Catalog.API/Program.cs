@@ -21,6 +21,7 @@ builder.Services.AddSingleton<KafkaProducer>();
 builder.Services.AddHostedService<KafkaConsumer>();
 builder.Services.AddScoped<Dbtest>();
 builder.Services.AddScoped<TestService>();
+builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 
 
 var app = builder.Build();
