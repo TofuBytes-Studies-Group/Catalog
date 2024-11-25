@@ -1,4 +1,3 @@
-using Catalog.Domain.Entities;
 
 namespace Catalog.API.DTO;
 
