@@ -1,11 +1,7 @@
-using Xunit;
 using Moq;
 using Microsoft.AspNetCore.Mvc;
 using Catalog.API.Controllers;
 using Catalog.API.Services;
-using Catalog.Domain.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using Catalog.API.DTO;
 using FluentValidation;
 using FluentValidation.Results;

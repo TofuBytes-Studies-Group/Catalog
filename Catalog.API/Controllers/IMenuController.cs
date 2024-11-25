@@ -1,4 +1,3 @@
-using Catalog.API.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
