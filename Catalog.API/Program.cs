@@ -1,6 +1,7 @@
 using Catalog.API.DTO;
 using Catalog.API.Kafka;
 using Catalog.API.Services;
+using Catalog.API.Validators;
 using Catalog.Infrastructure;
 using Catalog.Infrastructure.Kafka;
 using FluentValidation;

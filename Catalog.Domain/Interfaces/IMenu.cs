@@ -1,4 +1,6 @@
-﻿namespace Catalog.Domain.Entities;
+﻿using Catalog.Domain.Entities;
+
+namespace Catalog.Domain.Interfaces;
 
 public interface IMenu
 {

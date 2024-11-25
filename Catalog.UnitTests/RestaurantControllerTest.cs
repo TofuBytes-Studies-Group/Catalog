@@ -34,8 +34,8 @@ namespace Catalog.UnitTests
             var search = "restaurant";
             var restaurants = new List<RestaurantResponse>
             {
-                new RestaurantResponse( Guid.NewGuid(), "Restaurant 1" ),
-                new RestaurantResponse( Guid.NewGuid(), "Restaurant 2" )
+                new RestaurantResponse( Guid.NewGuid(), "Restaurant 1", null ),
+                new RestaurantResponse( Guid.NewGuid(), "Restaurant 2", null)
             };
             _mockService.Setup(s => s.SearchRestaurants(offset, limit, search)).ReturnsAsync(restaurants);
             // Act
@@ -49,6 +49,7 @@ namespace Catalog.UnitTests
         [Theory]
         [InlineData(0)]
         [InlineData(101)]
+        [InlineData(-1)]
         public async void GetRestaurantsShouldReturnBadRequestWhenLimitIsInvalid(int limit)
         {
             // Arrange
@@ -66,10 +67,10 @@ namespace Catalog.UnitTests
         {
            
             // Arrange
-            var restaurantRequest = new RestaurantRequest ("Restaurant 1");
+            var restaurantRequest = new RestaurantRequest ("Restaurant 1", Guid.NewGuid());
             var validationResult = new ValidationResult();
             _mockValidator.Setup(v => v.ValidateAsync(restaurantRequest, default)).ReturnsAsync(validationResult);
-            var restaurantResponse = new RestaurantResponse(Guid.NewGuid(), restaurantRequest.Name);
+            var restaurantResponse = new RestaurantResponse(Guid.NewGuid(), restaurantRequest.Name, null);
             _mockService.Setup(s => s.CreateRestaurant(restaurantRequest)).ReturnsAsync(restaurantResponse);
 
             // Act

@@ -1,4 +1,6 @@
-﻿namespace Catalog.Domain.Entities;
+﻿using Catalog.Domain.Interfaces;
+
+namespace Catalog.Domain.Entities;
 
 public class Menu : IMenu
 {

@@ -22,27 +22,30 @@ public class RestaurantService : IRestaurantService
         };
         var response = await _dbContext.Restaurants.AddAsync(restaurant);
         await _dbContext.SaveChangesAsync();
-        return new RestaurantResponse(response.Entity.Id, response.Entity.Name);
+        return new RestaurantResponse(response.Entity.Id, response.Entity.Name, null);
     }
 
     public async Task<List<RestaurantResponse>> SearchRestaurants(int offset, int limit, string? search)
     {
-        List<Restaurant> restaurants;
-        if (search != null)
-        {   
-            search = search.ToLower();
-            restaurants = await _dbContext.Restaurants.Where(r => r.Name.ToLower().Contains(search))
-                .Skip(offset)
-                .Take(limit)
-                .ToListAsync();
-        }
-        else
+        IQueryable<Restaurant> query = _dbContext.Restaurants.Include(r => r.Address);
+
+        if (!string.IsNullOrEmpty(search))
         {
-            restaurants = await _dbContext.Restaurants.Skip(offset)
-                .Take(limit)
-                .ToListAsync();
+            query = query.Where(r => r.Name.ToLower().Contains(search.ToLower()));
         }
 
-        return restaurants.Select(r => new RestaurantResponse(r.Id, r.Name)).ToList();
+        var restaurants = await query.Skip(offset)
+            .Take(limit)
+            .ToListAsync();
+
+        return restaurants.Select(r => new RestaurantResponse(
+                r.Id, 
+                r.Name, 
+                r.Address != null ? 
+                new AddressResponse(r.Address.Id, r.Address.Street, r.Address.City, r.Address.PostalCode):
+                null)
+            )
+            .ToList();
+        
     }
 }

@@ -10,6 +10,7 @@ namespace Catalog.Infrastructure
         }
 
         public DbSet<Restaurant> Restaurants => Set<Restaurant>();
+        public DbSet<Address> Addresses => Set<Address>();
 
         public DbSet<Menu> Menus => Set<Menu>();
 
@@ -30,12 +31,22 @@ namespace Catalog.Infrastructure
             modelBuilder.Entity<Dish>().HasOne<Menu>(d => d.Menu)
                 .WithMany(m => m.Dishes)
                 .HasForeignKey(d => d.MenuId);
+            modelBuilder.Entity<Address>().HasKey(a => a.Id);
+            modelBuilder.Entity<Address>().HasOne<Restaurant>(a => a.Restaurant)
+                .WithOne(r => r.Address)
+                .HasForeignKey<Restaurant>(r => r.AddressId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Restaurant>().HasOne<Address>(r => r.Address)
+                .WithOne(a => a.Restaurant)
+                .HasForeignKey<Restaurant>(r => r.AddressId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Restaurant>(entity =>
             {
                 entity.ToTable("restaurant");
                 entity.Property(r => r.Id).ValueGeneratedOnAdd();
                 entity.Property(r => r.Name).IsRequired();
+                entity.Property(r => r.AddressId).IsRequired();
             });
 
             modelBuilder.Entity<Menu>(entity =>
@@ -50,6 +61,15 @@ namespace Catalog.Infrastructure
                 entity.ToTable("dish");
                 entity.Property(m => m.Id).ValueGeneratedOnAdd();
                 entity.Property(m => m.MenuId).IsRequired();
+            });
+            
+            modelBuilder.Entity<Address>(entity =>
+            {
+                entity.ToTable("address");
+                entity.Property(a => a.Id).ValueGeneratedOnAdd();
+                entity.Property(a => a.Street).IsRequired();
+                entity.Property(a => a.City).IsRequired();
+                entity.Property(a => a.PostalCode).IsRequired();
             });
         }
     }
