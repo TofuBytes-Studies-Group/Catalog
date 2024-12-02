@@ -13,7 +13,7 @@ public class DishService : IDishService
     }
     public Task<DishRequest> GetDish(Guid dishId, Guid restaurantId)
     {
-        // need to get dish by dish id the dish needs to be in the menu of the restaurant
+
         var response = _dbContext.Dishes
             .Where(d => d.Id == dishId && d.Menu.RestaurantId == restaurantId)
             .Select(d => new DishRequest(d.Id, d.Name, d.Price))
