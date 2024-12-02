@@ -31,6 +31,6 @@ public class PocOrderServiceTest
         // Act
         await _service.CreateOrder(catalogResponse);
         // Assert
-        _kafkaProducer.Verify(p => p.ProduceAsync<CatalogResponse>("topic", "key", catalogResponse), Times.Once);
+        _kafkaProducer.Verify(p => p.ProduceAsync<CatalogResponse>("add.to.cart", "username", catalogResponse), Times.Once);
     }
 }
