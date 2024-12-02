@@ -34,7 +34,7 @@ namespace Catalog.API.Kafka
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             // Subscribe the consumer to the specified topic so it can receive messages from it. Should also be configured somewhere
-            _consumer.Subscribe("topic");
+            _consumer.Subscribe("add.to.cart");
 
             try
             {

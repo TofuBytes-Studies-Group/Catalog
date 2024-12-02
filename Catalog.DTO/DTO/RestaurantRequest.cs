@@ -1,5 +1,3 @@
-using FluentValidation;
-
 namespace Catalog.API.DTO;
 
 public class RestaurantRequest

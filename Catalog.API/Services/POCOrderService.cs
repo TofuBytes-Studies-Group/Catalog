@@ -12,8 +12,8 @@ public class PocOrderService : IPocOrderService
     {
         _kafkaProducer = kafkaProducer;
     }
-    public async Task CreateOrder(PocOrder order)
+    public async Task CreateOrder(CatalogResponse order)
     {
-        await _kafkaProducer.ProduceAsync<PocOrder>("topic", "key", order);
+        await _kafkaProducer.ProduceAsync<CatalogResponse>("add.to.cart", order.CustomerUsername, order);
     }
 }

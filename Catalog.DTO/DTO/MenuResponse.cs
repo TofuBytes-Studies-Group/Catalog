@@ -1,5 +1,4 @@
 namespace Catalog.API.DTO;
-
 public class MenuResponse
 {
     public Guid Id { get; set; }

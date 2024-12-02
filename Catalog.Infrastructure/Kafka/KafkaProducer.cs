@@ -1,4 +1,5 @@
 ﻿using System.Text.Json.Serialization;
+using Catalog.API.DTO;
 using Catalog.Domain.Entities;
 using Confluent.Kafka;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +38,7 @@ namespace Catalog.Infrastructure.Kafka
             _producer = new ProducerBuilder<string, string>(config).Build();
         }
 
-        public async Task ProduceAsync<T>(string topic, string key, PocOrder value)
+        public async Task ProduceAsync<T>(string topic, string key, CatalogResponse value)
         {
             try
             {

@@ -21,16 +21,16 @@ public class PocOrderServiceTest
     public async void CreateOrderShouldProduceOnKafka()
     {
         // Arrange
-        PocOrder pocOrder = new PocOrder(Guid.NewGuid(), new List<Guid> { Guid.NewGuid() });
+        CatalogResponse catalogResponse = new CatalogResponse(Guid.NewGuid(), Guid.NewGuid(), "username", new List<DishRequest>());
        
-        _kafkaProducer.Setup(x => x.ProduceAsync<PocOrder>(
+        _kafkaProducer.Setup(x => x.ProduceAsync<CatalogResponse>(
             It.IsAny<string>(), 
             It.IsAny<string>(), 
-            It.IsAny<PocOrder>()))
+            It.IsAny<CatalogResponse>()))
             .Returns(Task.CompletedTask);
         // Act
-        await _service.CreateOrder(pocOrder);
+        await _service.CreateOrder(catalogResponse);
         // Assert
-        _kafkaProducer.Verify(p => p.ProduceAsync<PocOrder>("topic", "key", pocOrder), Times.Once);
+        _kafkaProducer.Verify(p => p.ProduceAsync<CatalogResponse>("topic", "key", catalogResponse), Times.Once);
     }
 }
