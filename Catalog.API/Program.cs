@@ -1,5 +1,4 @@
 using Catalog.API.DTO;
-using Catalog.API.Kafka;
 using Catalog.API.Services;
 using Catalog.API.Validators;
 using Catalog.Infrastructure;
@@ -21,7 +20,6 @@ builder.Services.AddDbContext<CatalogContext>(options =>
 // Add the producer service as singletons:
 builder.Services.AddSingleton<IKafkaProducer, KafkaProducer>();
 // Add the kafka consumer service as a hosted service (background service that runs for the lifetime of the application):
-builder.Services.AddHostedService<KafkaConsumer>();
 builder.Services.AddScoped<IRestaurantService, RestaurantService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
 builder.Services.AddScoped<IValidator<RestaurantRequest>, RestaurantRequestValidator>();
