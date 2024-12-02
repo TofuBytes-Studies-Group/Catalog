@@ -1,4 +1,3 @@
-
 namespace Catalog.API.DTO;
 
 public class RestaurantResponse

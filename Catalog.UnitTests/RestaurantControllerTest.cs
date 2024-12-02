@@ -1,8 +1,8 @@
 using Moq;
 using Microsoft.AspNetCore.Mvc;
 using Catalog.API.Controllers;
-using Catalog.API.Services;
 using Catalog.API.DTO;
+using Catalog.API.Services;
 using FluentValidation;
 using FluentValidation.Results;
 
