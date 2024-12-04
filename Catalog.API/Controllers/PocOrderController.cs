@@ -21,7 +21,7 @@ public class PocOrderController : ControllerBase, IPocOrderController
     [HttpPost]
     public async Task<IActionResult> CreateOrderAsync(CatalogRequest orderRequest)
     {
-        var dishes = new List<DishRequest>();
+        var dishes = new List<DishResponse>();
 
         foreach (var dish in orderRequest.Dishes)
         {
