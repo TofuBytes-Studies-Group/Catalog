@@ -6,9 +6,9 @@ public class CatalogResponse
     
     public string CustomerUsername { get; set; }
     public Guid Restaurant { get; set; }
-    public List<DishRequest> Dishes { get; set; }
+    public List<DishResponse> Dishes { get; set; }
     
-    public CatalogResponse(Guid restaurantId, Guid customerId, string customerUsername, List<DishRequest> dishes)
+    public CatalogResponse(Guid restaurantId, Guid customerId, string customerUsername, List<DishResponse> dishes)
     {
         Restaurant = restaurantId;
         CustomerId = customerId;

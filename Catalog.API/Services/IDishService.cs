@@ -5,5 +5,5 @@ namespace Catalog.API.Services;
 
 public interface IDishService
 {
-    public Task<DishRequest> GetDish(Guid dishId, Guid restaurantId);
+    public Task<DishResponse> GetDish(Guid dishId, Guid restaurantId);
 }

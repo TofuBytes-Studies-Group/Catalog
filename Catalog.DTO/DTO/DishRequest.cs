@@ -4,9 +4,9 @@ public class DishRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; }
-    public decimal Price { get; set; }
+    public int Price { get; set; }
 
-    public DishRequest(Guid id, string name, decimal price)
+    public DishRequest(Guid id, string name, int price)
     {
         Id = id;
         Name = name;

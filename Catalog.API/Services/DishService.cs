@@ -11,12 +11,12 @@ public class DishService : IDishService
     {
         _dbContext = context ?? throw new ArgumentNullException(nameof(context));
     }
-    public Task<DishRequest> GetDish(Guid dishId, Guid restaurantId)
+    public Task<DishResponse> GetDish(Guid dishId, Guid restaurantId)
     {
 
         var response = _dbContext.Dishes
             .Where(d => d.Id == dishId && d.Menu.RestaurantId == restaurantId)
-            .Select(d => new DishRequest(d.Id, d.Name, d.Price))
+            .Select(d => new DishResponse(d.Id, d.Name, d.Price))
             .FirstOrDefault() ?? throw new KeyNotFoundException();
         return Task.FromResult(response);
     }

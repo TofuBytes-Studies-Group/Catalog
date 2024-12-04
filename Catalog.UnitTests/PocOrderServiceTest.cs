@@ -21,7 +21,7 @@ public class PocOrderServiceTest
     public async void CreateOrderShouldProduceOnKafka()
     {
         // Arrange
-        CatalogResponse catalogResponse = new CatalogResponse(Guid.NewGuid(), Guid.NewGuid(), "username", new List<DishRequest>());
+        CatalogResponse catalogResponse = new CatalogResponse(Guid.NewGuid(), Guid.NewGuid(), "username", new List<DishResponse>());
        
         _kafkaProducer.Setup(x => x.ProduceAsync<CatalogResponse>(
             It.IsAny<string>(), 
