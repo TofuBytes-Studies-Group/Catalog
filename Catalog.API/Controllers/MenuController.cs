@@ -15,7 +15,7 @@ public class MenuController : ControllerBase, IMenuController
     }
     
     [HttpGet]
-    [Route("/{restaurantId}")]
+    [Route("{restaurantId}")]
     public async Task<IActionResult> GetMenuAsync(Guid restaurantId)
     {
         try

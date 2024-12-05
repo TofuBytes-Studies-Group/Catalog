@@ -18,8 +18,8 @@ public class RestaurantController: ControllerBase, IRestaurantController
         _validator = validator;
     }
     
-    [HttpGet]
-    [Route("/list")]
+
+    [HttpGet("list")]
     public async Task<IActionResult> GetRestaurants(int offset = 0, int limit = 20, string? search = null)
     {
         if (limit < 1 || limit > 100)
