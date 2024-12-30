@@ -8,7 +8,7 @@ public class Menu : IMenu
     {
         RestaurantId = restaurant.Id;
         Restaurant = restaurant;
-        Dishes = new List<Dish>();
+        Dishes = [];
     }
     
     public Menu(){

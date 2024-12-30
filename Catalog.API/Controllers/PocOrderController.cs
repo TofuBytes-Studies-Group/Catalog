@@ -1,23 +1,14 @@
-using Catalog.API.DTO;
 using Catalog.API.Services;
-using Catalog.Domain.Entities;
+using Catalog.DTO.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Catalog.API.Controllers;
 
 [ApiController]
 [Route("/order")]
-public class PocOrderController : ControllerBase, IPocOrderController
+public class PocOrderController(IPocOrderService orderService, IDishService dishService)
+    : ControllerBase, IPocOrderController
 {
-    private readonly IPocOrderService _orderService;
-    private readonly IDishService _dishService;
-
-    public PocOrderController(IPocOrderService orderService, IDishService dishService)
-    {
-        _orderService = orderService;
-        _dishService = dishService;
-    }
-
     [HttpPost]
     public async Task<IActionResult> CreateOrderAsync(CatalogRequest orderRequest)
     {
@@ -27,7 +18,7 @@ public class PocOrderController : ControllerBase, IPocOrderController
         {
             try
             {
-                dishes.Add(await _dishService.GetDish(dish, orderRequest.RestaurantId));
+                dishes.Add(await dishService.GetDish(dish, orderRequest.RestaurantId));
             }
             catch (KeyNotFoundException)
             {
@@ -37,7 +28,7 @@ public class PocOrderController : ControllerBase, IPocOrderController
 
         var order = new CatalogResponse(orderRequest.RestaurantId, orderRequest.CustomerId,
             orderRequest.CustomerUsername, dishes);
-        await _orderService.CreateOrder(order);
+        await orderService.CreateOrder(order);
         return Created();
     }
 }

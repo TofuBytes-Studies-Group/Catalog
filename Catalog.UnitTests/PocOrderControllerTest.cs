@@ -1,7 +1,6 @@
 using Catalog.API.Controllers;
-using Catalog.API.DTO;
 using Catalog.API.Services;
-using Catalog.Domain.Entities;
+using Catalog.DTO.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 
@@ -25,7 +24,7 @@ public class PocOrderControllerTest
     {
         // Arrange
         
-        var orderRequest = new CatalogRequest(new Guid(), new Guid(), "username", new List<Guid> {Guid.NewGuid()});
+        var orderRequest = new CatalogRequest(new Guid(), new Guid(), "username", [Guid.NewGuid()]);
         _dishServiceMock.Setup(s => s.GetDish(It.IsAny<Guid>(),It.IsAny<Guid>())).ReturnsAsync(new DishResponse(new Guid(), "name", 10));
         _orderServiceMock.Setup(s => s.CreateOrder(new CatalogResponse())).Returns(Task.CompletedTask);
         // Act
@@ -38,7 +37,7 @@ public class PocOrderControllerTest
     public async void CreateOrderAsyncShouldReturnNotFoundResult()
     {
         // Arrange
-        var orderRequest = new CatalogRequest(new Guid(), new Guid(), "username", new List<Guid> {Guid.NewGuid()});
+        var orderRequest = new CatalogRequest(new Guid(), new Guid(), "username", [Guid.NewGuid()]);
         _dishServiceMock.Setup(s => s.GetDish(It.IsAny<Guid>(),It.IsAny<Guid>())).ThrowsAsync(new KeyNotFoundException());
         // Act
         var result = await _orderController.CreateOrderAsync(orderRequest);

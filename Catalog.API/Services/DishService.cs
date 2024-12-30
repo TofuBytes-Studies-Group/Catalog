@@ -1,16 +1,12 @@
-using Catalog.API.DTO;
+using Catalog.DTO.DTO;
 using Catalog.Infrastructure;
 
 namespace Catalog.API.Services;
 
-public class DishService : IDishService
+public class DishService(CatalogContext context) : IDishService
 {
-    private readonly CatalogContext _dbContext;
-    
-    public DishService(CatalogContext context)
-    {
-        _dbContext = context ?? throw new ArgumentNullException(nameof(context));
-    }
+    private readonly CatalogContext _dbContext = context ?? throw new ArgumentNullException(nameof(context));
+
     public Task<DishResponse> GetDish(Guid dishId, Guid restaurantId)
     {
 

@@ -1,14 +1,7 @@
-namespace Catalog.API.DTO;
-public class MenuResponse
+namespace Catalog.DTO.DTO;
+public class MenuResponse(Guid id, Guid restaurantId, List<DishResponse> dishes)
 {
-    public Guid Id { get; set; }
-    public Guid RestaurantId { get; set; }
-    public List<DishResponse> Dishes { get; set; }
-    
-    public MenuResponse(Guid id, Guid restaurantId, List<DishResponse> dishes)
-    {
-        this.Id = id;
-        this.RestaurantId = restaurantId;
-        this.Dishes = dishes;
-    }
+    public Guid Id { get; } = id;
+    public Guid RestaurantId { get; } = restaurantId;
+    public List<DishResponse> Dishes { get; } = dishes;
 }

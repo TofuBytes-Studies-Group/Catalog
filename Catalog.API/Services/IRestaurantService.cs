@@ -1,11 +1,10 @@
-using Catalog.API.DTO;
+using Catalog.DTO.DTO;
 
 
-namespace Catalog.API.Services
+namespace Catalog.API.Services;
+
+public interface IRestaurantService
 {
-    public interface IRestaurantService
-    {
-        Task<RestaurantResponse> CreateRestaurant(RestaurantRequest restaurantRequest);
-        Task<List<RestaurantResponse>> SearchRestaurants(int offset, int limit, string? search);
-    }
+    Task<RestaurantResponse> CreateRestaurant(RestaurantRequest restaurantRequest);
+    Task<List<RestaurantResponse>> SearchRestaurants(int offset, int limit, string? search);
 }

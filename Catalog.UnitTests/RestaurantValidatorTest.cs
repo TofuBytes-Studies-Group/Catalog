@@ -1,16 +1,11 @@
-using Catalog.API.DTO;
 using Catalog.API.Validators;
+using Catalog.DTO.DTO;
 
 namespace Catalog.UnitTests;
 
 public class RestaurantValidatorTest
 {
-    private readonly RestaurantRequestValidator _validator;
-
-    public RestaurantValidatorTest()
-    {
-        _validator = new RestaurantRequestValidator();
-    }
+    private readonly RestaurantRequestValidator _validator = new();
 
     [Fact]
     public void ValidateShouldReturnSuccessWhenNameIsValid()

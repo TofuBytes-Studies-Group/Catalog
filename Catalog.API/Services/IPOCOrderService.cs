@@ -1,5 +1,4 @@
-using Catalog.API.DTO;
-using Catalog.Domain.Entities;
+using Catalog.DTO.DTO;
 
 namespace Catalog.API.Services;
 
