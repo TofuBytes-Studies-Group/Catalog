@@ -1,15 +1,8 @@
 namespace Catalog.DTO.DTO;
 
-public class RestaurantResponse
+public class RestaurantResponse(Guid id, string name, AddressResponse? address)
 {
-    public Guid Id { get; }
-    public string Name { get; }
-    public AddressResponse? Address { get; }
-    
-    public RestaurantResponse(Guid id, string name, AddressResponse? address)
-    {
-        Id = id;
-        Name = name;
-        Address = address;
-    }
+    public Guid Id { get; } = id;
+    public string Name { get; } = name;
+    public AddressResponse? Address { get; } = address;
 }

@@ -1,18 +1,9 @@
 namespace Catalog.DTO.DTO;
 
-public class CatalogRequest
-
+public class CatalogRequest(Guid restaurantId, Guid customerId, string customerUsername, List<Guid> dishes)
 {
-    public Guid RestaurantId { get; set; }
-    public Guid CustomerId { get; set; }
-    public string CustomerUsername { get; set; }
-    public List<Guid> Dishes { get; set; }
-    
-    public CatalogRequest(Guid restaurantId, Guid customerId, string customerUsername, List<Guid> dishes)
-    {
-        RestaurantId = restaurantId;
-        CustomerId = customerId;
-        CustomerUsername = customerUsername;
-        Dishes = dishes;
-    }
+    public Guid RestaurantId { get; } = restaurantId;
+    public Guid CustomerId { get; } = customerId;
+    public string CustomerUsername { get; } = customerUsername;
+    public List<Guid> Dishes { get; } = dishes;
 }

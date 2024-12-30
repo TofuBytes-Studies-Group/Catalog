@@ -5,14 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.API.Services;
 
-public class RestaurantService : IRestaurantService
+public class RestaurantService(CatalogContext context) : IRestaurantService
 {
-    private readonly CatalogContext _dbContext;
-
-    public RestaurantService(CatalogContext context)
-    {
-        _dbContext = context ?? throw new ArgumentNullException(nameof(context));
-    }
+    private readonly CatalogContext _dbContext = context ?? throw new ArgumentNullException(nameof(context));
 
     public async Task<RestaurantResponse> CreateRestaurant(RestaurantRequest restaurantRequest)
     {

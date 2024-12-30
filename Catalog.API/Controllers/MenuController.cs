@@ -5,22 +5,15 @@ namespace Catalog.API.Controllers;
 
 [ApiController]
 [Route("/menu")]
-public class MenuController : ControllerBase, IMenuController
+public class MenuController(IMenuService service) : ControllerBase, IMenuController
 {
-    private readonly IMenuService _service;
-    
-    public MenuController(IMenuService service)
-    {
-        _service = service;
-    }
-    
     [HttpGet]
-    [Route("{restaurantId}")]
+    [Route("{restaurantId:guid}")]
     public async Task<IActionResult> GetMenuAsync(Guid restaurantId)
     {
         try
         {
-            var menu = await _service.GetMenu(restaurantId);
+            var menu = await service.GetMenu(restaurantId);
             return Ok(menu);
         }
         catch (KeyNotFoundException)

@@ -5,5 +5,5 @@ namespace Catalog.API.Controllers;
 
 public interface IPocOrderController
 {
-    Task<IActionResult> CreateOrderAsync(CatalogRequest orderRequest);
+    public Task<IActionResult> CreateOrderAsync(CatalogRequest orderRequest);
 }

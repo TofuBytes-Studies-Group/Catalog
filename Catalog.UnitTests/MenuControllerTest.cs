@@ -22,7 +22,7 @@ public class MenuControllerTest
     {
         // Arrange
         var restaurantId = Guid.NewGuid();
-        var menu = new MenuResponse(new Guid(), restaurantId, new List<DishResponse>());
+        var menu = new MenuResponse(new Guid(), restaurantId, []);
         _mockService.Setup(s => s.GetMenu(restaurantId)).ReturnsAsync(menu);
         // Act
         var result = await _controller.GetMenuAsync(restaurantId);

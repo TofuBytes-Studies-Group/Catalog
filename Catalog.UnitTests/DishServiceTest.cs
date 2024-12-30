@@ -8,7 +8,7 @@ namespace Catalog.UnitTests;
 public class DishServiceTest : IDisposable
 {
     private readonly CatalogContext _dbContext;
-    private readonly IDishService _dishService;
+    private readonly DishService _dishService;
     
     public DishServiceTest()
     {
