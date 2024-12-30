@@ -12,14 +12,11 @@ public class Address : IAddress
         PostalCode = postalCode;
     }
     
-    public Address()
-    {
-    }
     
     public Guid Id { get; set; }
     public string Street { get; set; }
     public string City { get; set; }
     public int PostalCode { get; set; }
     [JsonIgnore]
-    public Restaurant Restaurant { get; set; }
+    public Restaurant? Restaurant { get; set; }
 }

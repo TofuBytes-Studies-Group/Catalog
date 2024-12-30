@@ -1,5 +1,4 @@
-using Catalog.API.DTO;
-using Catalog.Domain.Entities;
+using Catalog.DTO.DTO;
 using Catalog.Infrastructure.Kafka;
 
 namespace Catalog.API.Services;

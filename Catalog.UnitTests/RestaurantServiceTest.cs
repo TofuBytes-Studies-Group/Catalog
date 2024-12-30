@@ -1,6 +1,6 @@
-using Catalog.API.DTO;
 using Catalog.API.Services;
 using Catalog.Domain.Entities;
+using Catalog.DTO.DTO;
 using Catalog.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,6 +35,7 @@ namespace Catalog.UnitTests
             var result = await _service.CreateRestaurant(restaurant);
             // Assert
             Assert.Equal(restaurant.Name, result.Name);
+            Assert.NotEqual(Guid.Empty, result.Id);
         }
 
         [Fact]
@@ -166,6 +167,9 @@ namespace Catalog.UnitTests
             // Assert
             Assert.NotNull(result[0].Address);
             Assert.Equal(address.Street, result[0].Address?.Street);
+            Assert.Equal(address.City, result[0].Address?.City);
+            Assert.Equal(address.PostalCode, result[0].Address?.PostalCode);
+            Assert.Equal(address.Id, result[0].Address?.Id);
         }
     }
 }

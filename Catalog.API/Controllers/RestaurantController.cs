@@ -1,5 +1,5 @@
-using Catalog.API.DTO;
 using Catalog.API.Services;
+using Catalog.DTO.DTO;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 

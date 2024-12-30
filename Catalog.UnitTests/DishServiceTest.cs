@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Catalog.UnitTests;
 
-public class DishServiceTest
+public class DishServiceTest : IDisposable
 {
     private readonly CatalogContext _dbContext;
     private readonly IDishService _dishService;
@@ -17,8 +17,8 @@ public class DishServiceTest
             .Options);
         _dishService = new DishService(_dbContext);
     }
-    
-    void Dispose()
+
+    public void Dispose()
     {
         _dbContext.Database.EnsureDeleted();
         _dbContext.Dispose();
@@ -38,7 +38,9 @@ public class DishServiceTest
         // Act
         var result = await _dishService.GetDish(dish.Id, restaurant.Id);
         // Assert
+        Assert.Equal(dish.Id, result.Id);
         Assert.Equal(dish.Name, result.Name);
+        Assert.Equal(dish.Price, result.Price);
     }
     
     [Fact]

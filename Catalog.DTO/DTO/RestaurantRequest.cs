@@ -1,4 +1,4 @@
-namespace Catalog.API.DTO;
+namespace Catalog.DTO.DTO;
 
 public class RestaurantRequest
 {

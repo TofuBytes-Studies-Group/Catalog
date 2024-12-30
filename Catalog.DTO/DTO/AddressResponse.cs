@@ -1,11 +1,11 @@
-namespace Catalog.API.DTO;
+namespace Catalog.DTO.DTO;
 
 public class AddressResponse
 {
-    public Guid Id { get; set; }
-    public string Street { get; set; }
-    public string City { get; set; }
-    public int PostalCode { get; set; }
+    public Guid Id { get; }
+    public string Street { get; }
+    public string City { get; }
+    public int PostalCode { get; }
     
     public AddressResponse(Guid id, string street, string city, int postalCode)
     {

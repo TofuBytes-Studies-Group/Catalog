@@ -1,4 +1,4 @@
-using Catalog.API.DTO;
+using Catalog.DTO.DTO;
 using Catalog.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 

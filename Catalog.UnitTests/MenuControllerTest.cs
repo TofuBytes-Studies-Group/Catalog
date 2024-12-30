@@ -1,6 +1,6 @@
 using Catalog.API.Controllers;
-using Catalog.API.DTO;
 using Catalog.API.Services;
+using Catalog.DTO.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 

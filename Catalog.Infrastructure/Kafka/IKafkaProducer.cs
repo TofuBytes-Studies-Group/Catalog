@@ -1,6 +1,4 @@
-
-
-using Catalog.API.DTO;
+using Catalog.DTO.DTO;
 
 namespace Catalog.Infrastructure.Kafka;
 

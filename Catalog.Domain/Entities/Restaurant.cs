@@ -16,8 +16,8 @@ namespace Catalog.Domain.Entities
 
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public Menu Menu { get; set; }
-        public Address Address { get; set; }
+        public Menu? Menu { get; set; }
+        public Address? Address { get; set; }
         public Guid AddressId { get; set; }
     }
 }

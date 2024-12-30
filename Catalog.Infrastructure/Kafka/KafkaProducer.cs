@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Catalog.API.DTO;
-using Catalog.Domain.Entities;
+﻿using Catalog.DTO.DTO;
 using Confluent.Kafka;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -63,7 +61,7 @@ namespace Catalog.Infrastructure.Kafka
         // Should be disposed when done by default because of Singleton use in Program.cs but to be sure:
         public void Dispose()
         {
-            _producer?.Dispose();
+            _producer.Dispose();
         }
     }
 }

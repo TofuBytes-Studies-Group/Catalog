@@ -1,5 +1,5 @@
-using Catalog.API.DTO;
 using Catalog.API.Validators;
+using Catalog.DTO.DTO;
 
 namespace Catalog.UnitTests;
 

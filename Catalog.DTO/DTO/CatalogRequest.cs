@@ -1,4 +1,4 @@
-namespace Catalog.API.DTO;
+namespace Catalog.DTO.DTO;
 
 public class CatalogRequest
 
@@ -14,9 +14,5 @@ public class CatalogRequest
         CustomerId = customerId;
         CustomerUsername = customerUsername;
         Dishes = dishes;
-    }
-   
-    public CatalogRequest()
-    {
     }
 }
